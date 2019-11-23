@@ -2,6 +2,7 @@ package com.example.appmotivacional;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,20 +27,27 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getPostagems();
+        getFrases();
         btnMudar = findViewById(R.id.btnMudar);
-
         btnMudar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getPostagems();
+                getFrases();
             }
         });
+
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+        sendIntent.setType("text/plain");
+
+        Intent shareIntent = Intent.createChooser(sendIntent, null);
+        startActivity(shareIntent);
 
     }
 
 
-    public void getPostagems() {
+    public void getFrases() {
         apiService = RetrofitBuilder.getRetrofit().create(ApiService.class);
         //call = apiService.getPostagems();
         Call<Frases> listCall = apiService.getFrases();
