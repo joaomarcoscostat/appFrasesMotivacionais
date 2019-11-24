@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.appmotivacional.model.Frases;
@@ -22,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     private ApiService apiService;
     private Frases Frase;
     private Button btnMudar;
+    private ImageView btnShare;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,16 +38,24 @@ public class MainActivity extends AppCompatActivity {
                 getFrases();
             }
         });
+        btnShare=findViewById(R.id.btnShare);
+        btnShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String text=Frase.toString();
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, text);
+                sendIntent.setType("text/plain");
 
-        Intent sendIntent = new Intent();
-        sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
-        sendIntent.setType("text/plain");
+                Intent shareIntent = Intent.createChooser(sendIntent, null);
+                startActivity(shareIntent);
+            }
+        });
 
-        Intent shareIntent = Intent.createChooser(sendIntent, null);
-        startActivity(shareIntent);
 
     }
+
 
 
     public void getFrases() {

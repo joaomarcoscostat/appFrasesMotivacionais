@@ -9,47 +9,51 @@
 
     <TextView
         android:id="@+id/caixaFrase"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="37dp"
-        android:layout_marginTop="72dp"
-        android:layout_marginEnd="37dp"
-        android:layout_marginBottom="24dp"
+        android:layout_width="343dp"
+        android:layout_height="382dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="33dp"
+        android:layout_marginBottom="15dp"
         android:ellipsize="none"
         android:text="FRASE DE HOJE"
         android:textAlignment="center"
         android:textColor="#FADFBE"
         android:textSize="18sp"
         app:autoSizeTextType="uniform"
-        app:layout_constraintBottom_toTopOf="@+id/btnMudar"
+        app:layout_constraintBottom_toTopOf="@+id/btnShare"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnMudar"
-        android:layout_width="95dp"
-        android:layout_height="80dp"
-        android:layout_marginBottom="30dp"
-        android:background="#AB3C0808"
+        android:layout_width="109dp"
+        android:layout_height="78dp"
+        android:layout_marginBottom="35dp"
+        android:background="@drawable/margens"
         android:text="TROCAR"
         android:textColor="#FADFBE"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/caixaFrase" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="72dp"
-        android:layout_height="61dp"
-        android:layout_marginBottom="37dp"
-        android:background="#FADFBE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnMudar"
+        app:layout_constraintTop_toBottomOf="@+id/btnShare"
+
+        />
+
+    <ImageView
+        android:id="@+id/btnShare"
+        android:layout_width="73dp"
+        android:layout_height="68dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/backgroundredondo"
+        android:padding="10dip"
+        app:layout_constraintBottom_toTopOf="@+id/btnMudar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/caixaFrase"
         app:srcCompat="?attr/actionModeShareDrawable" />
 
 
