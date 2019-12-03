@@ -30,5 +30,9 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation 'com.google.code.gson:gson:2.8.5'
+<<<<<<< HEAD
+=======
+    implementation 'com.android.support:support-compat'
+>>>>>>> 46907c739a5c311cd54f1937760c54ee9de2db0d
 
 }
