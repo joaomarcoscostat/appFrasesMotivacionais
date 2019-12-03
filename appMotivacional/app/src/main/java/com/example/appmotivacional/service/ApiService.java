@@ -19,3 +19,4 @@ public interface ApiService {
     @GET("/")
     Call<Frases> getFrases();
 }
+
