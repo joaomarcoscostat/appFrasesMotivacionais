@@ -9,52 +9,64 @@
 
     <TextView
         android:id="@+id/caixaFrase"
-        android:layout_width="376dp"
-        android:layout_height="389dp"
-        android:layout_marginStart="33dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="33dp"
-        android:layout_marginBottom="15dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="53dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginBottom="37dp"
         android:ellipsize="none"
         android:text="FRASE DE HOJE"
         android:textAlignment="center"
         android:textColor="#FADFBE"
-        android:textSize="18sp"
+        android:textSize="15sp"
         app:autoSizeTextType="uniform"
-        app:layout_constraintBottom_toTopOf="@+id/btnShare"
+        app:layout_constraintBottom_toTopOf="@+id/progressBar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnMudar"
-        android:layout_width="109dp"
+        android:layout_width="0dp"
         android:layout_height="78dp"
-        android:layout_marginBottom="35dp"
+        android:layout_marginStart="151dp"
+        android:layout_marginEnd="34dp"
+
+        android:layout_marginBottom="30dp"
         android:background="@drawable/margens"
         android:text="TROCAR"
         android:textColor="#FADFBE"
-        android:textSize="18sp"
+        android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnShare"
-
-        />
+        app:layout_constraintEnd_toStartOf="@+id/btnShare"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/btnShare"
-        android:layout_width="71dp"
-        android:layout_height="55dp"
-        android:layout_marginBottom="30dp"
+        android:layout_width="73dp"
+        android:layout_height="52dp"
+        android:layout_marginEnd="46dp"
+        android:layout_marginBottom="43dp"
         android:background="@drawable/backgroundredondo"
         android:padding="10dip"
-        app:layout_constraintBottom_toTopOf="@+id/btnMudar"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/caixaFrase"
+        app:layout_constraintStart_toEndOf="@+id/btnMudar"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar"
         app:srcCompat="?attr/actionModeShareDrawable" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="86dp"
+        android:layout_height="75dp"
+        android:layout_marginBottom="69dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnShare"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/caixaFrase" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

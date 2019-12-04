@@ -3,22 +3,18 @@ package com.example.appmotivacional;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.appmotivacional.model.Frases;
 import com.example.appmotivacional.service.ApiService;
 import com.example.appmotivacional.service.RetrofitBuilder;
-import com.example.appmotivacional.NotificationHelper;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,8 +27,10 @@ public class MainActivity extends AppCompatActivity {
     private Frases Frase;
     private Button btnMudar;
     private ImageView btnShare;
+    private ProgressBar progressBar;
 
     private NotificationHelper mNotificationHelper;
+
 
 
 
@@ -42,10 +40,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnMudar = findViewById(R.id.btnMudar);
+        progressBar = findViewById(R.id.progressBar);
+        btnMudar = findViewById(R.id.btnMudar); /*Referencia com id do mesmo no Layout*/
         btnShare=findViewById(R.id.btnShare);
-        mNotificationHelper = new NotificationHelper(this);
+
+
+        mNotificationHelper = new NotificationHelper(this); /*Estancia objeto da classe de Notificacao*/
+
+        /*sendOnChannel1(getTitle().toString(),Frase.toString()); Chamar notificacao*/
+
+
         getFrases();
+
 
 
 
@@ -53,24 +59,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                sendOnChannel1(getTitle().toString(),Frase.toString());
+                getFrases(); /*Chama função da API de Frases*/
 
             }
         });
 
 
         btnShare.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String text=Frase.toString();
-                    Intent sendIntent = new Intent();
-                    sendIntent.setAction(Intent.ACTION_SEND);
-                    sendIntent.putExtra(Intent.EXTRA_TEXT, text);
-                    sendIntent.setType("text/plain");
+            @Override
+            public void onClick(View v) {
+                String text=Frase.toString();  /*String para receber o texto da função que retorna frases da API*/
+                Intent sendIntent = new Intent(); /*Estancia intet que chamará o shareIntent(Compartilhamento)*/
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, text); /*Especifica tamanho do dado e a variável que armazena o mesmo*/
+                sendIntent.setType("text/plain");/*Tipo de dado que irá compartilhar*/
 
-                    Intent shareIntent = Intent.createChooser(sendIntent, null);
-                    startActivity(shareIntent);
-                }
+                Intent shareIntent = Intent.createChooser(sendIntent, "Compartilhar Frase");
+                startActivity(shareIntent); /*Chama  a Activity com a o menu de compartilhamento*/
+            }
         });
 
 
@@ -80,9 +86,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void getFrases() {
         apiService = RetrofitBuilder.getRetrofit().create(ApiService.class);
-        //call = apiService.getPostagems();
+
+        exibirProgress(true);
+
         Call<Frases> listCall = apiService.getFrases();
         listCall.enqueue(new Callback<Frases>() {
+
+
 
             @Override
             public void onResponse(Call<Frases> call, Response<Frases> response) {
@@ -94,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
                     TextView Resultado = findViewById(R.id.caixaFrase);
                     Resultado.setText(Frase.toString());
+                    exibirProgress(false);
                 }
             }
 
@@ -112,6 +123,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    private void exibirProgress(boolean exibir) {
+        progressBar.setVisibility(exibir ? View.VISIBLE : View.GONE);
+    } /*Exibir ProgressBar*/
+
 
 
 }

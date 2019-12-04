@@ -24,6 +24,8 @@ public class NotificationHelper extends ContextWrapper {
         super(base);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             createChannels();
+
+
         }
 
     }
@@ -37,6 +39,7 @@ public class NotificationHelper extends ContextWrapper {
         channel1.setLightColor(R.color.colorPrimary);
         channel1.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
         getManager().createNotificationChannel(channel1);
+
     }
     public NotificationManager getManager(){
         if (mManager==null){
@@ -62,13 +65,17 @@ public class NotificationHelper extends ContextWrapper {
     Intent intent = new Intent(this, MainActivity.class);
     PendingIntent p = getPendingIntent(0, intent, this);
 
+
+
     private PendingIntent getPendingIntent(int id, Intent intent, Context context){
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
         stackBuilder.addParentStack(intent.getComponent());
         stackBuilder.addNextIntent(intent);
 
 
+
         PendingIntent p = stackBuilder.getPendingIntent(id, PendingIntent.FLAG_UPDATE_CURRENT);
         return p;
+
     }
 }
